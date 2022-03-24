@@ -1,9 +1,10 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 
 namespace SeguridadCiudadana.Domain.Dtos
 {
-    public partial class EstacionResponse{
+    public partial class EstacionResponse
+    {
         public int Idestacion { get; set; }
         public string? Nombreestacion { get; set; }
         public string? Direccion { get; set; }
@@ -14,8 +15,7 @@ namespace SeguridadCiudadana.Domain.Dtos
         public string Colonia { get; set; }
         public string Calle { get; set; }
         public string Cruzamientos { get; set; }
-    
         
         
     }
-}*/
+}

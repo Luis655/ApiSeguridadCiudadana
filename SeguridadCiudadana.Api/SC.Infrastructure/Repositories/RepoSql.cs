@@ -15,7 +15,7 @@ namespace SC.Infrastructure.Repositories
         public async Task<IQueryable<Policia>> GetAll()
         {
             var _context = new SEGURIDADCIUDADANAContext();
-            var query = await  _context.Policias.Include(x => x.IdpersonaNavigation).Include(x=>x.IdrangoNavigation).Include(x=>x.IdestacionNavigation).Include(x=> x.IdestacionNavigation.IddireccionNavigation).Include(x => x.IdtipousuarioNavigation).ToListAsync();
+            var query = await  _context.Policias.Include(x => x.IdpersonaNavigation).Include(x=>x.IdrangoNavigation).Include(x=>x.IdestacionNavigation).Include(x=> x.IdestacionNavigation.IddireccionNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IdgeneroNavigation).ToListAsync();
             return query.AsQueryable();
         }
 
@@ -50,7 +50,7 @@ namespace SC.Infrastructure.Repositories
          public async Task<IQueryable<Usuario>> GetAllUsuarios()
         {
             var _context = new SEGURIDADCIUDADANAContext();
-             var query = await  _context.Usuarios.Include(x => x.IdpersonaNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IddireccionNavigation).ToListAsync();
+             var query = await  _context.Usuarios.Include(x => x.IdpersonaNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IddireccionNavigation).Include(x => x.IdgeneroNavigation).ToListAsync();
             
             return query.AsQueryable();
         }
@@ -72,7 +72,7 @@ namespace SC.Infrastructure.Repositories
          public async Task<Policia> GetById2(int id)
         {
             var _context = new SEGURIDADCIUDADANAContext();
-            var query = await _context.Policias.Include(x => x.IdpersonaNavigation).Include(x=>x.IdrangoNavigation).Include(x=>x.IdestacionNavigation).Include(x=> x.IdestacionNavigation.IddireccionNavigation).Include(x => x.IdtipousuarioNavigation).FirstOrDefaultAsync(x => x.Idpolicias == id);
+            var query = await _context.Policias.Include(x => x.IdpersonaNavigation).Include(x=>x.IdrangoNavigation).Include(x=>x.IdestacionNavigation).Include(x=> x.IdestacionNavigation.IddireccionNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IdgeneroNavigation).FirstOrDefaultAsync(x => x.Idpolicias == id);
             return query;
         }
 
@@ -103,7 +103,7 @@ namespace SC.Infrastructure.Repositories
         public async Task<Usuario> GetByIdUsuarios2(int id)
         {
             var _context = new SEGURIDADCIUDADANAContext();
-            var query = await _context.Usuarios.Include(x => x.IdpersonaNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IddireccionNavigation).FirstOrDefaultAsync(x => x.Idusuario == id);
+            var query = await _context.Usuarios.Include(x => x.IdpersonaNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IddireccionNavigation).Include(x => x.IdgeneroNavigation).FirstOrDefaultAsync(x => x.Idusuario == id);
             return query;
         }
         public Direccionessegura GetByIdDireccionesseguras(int id)

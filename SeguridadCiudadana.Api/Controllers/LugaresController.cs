@@ -101,7 +101,7 @@ namespace SeguridadCiudadana.Api.Controllers
             var dtos = new DireccionessegurasResponse
             {
                 Iddireccionsegura = direccion.Iddireccionsegura,
-                Latitud = direccion.Latitud == null ? null : direccion.Latitud,
+                Latitud = direccion.Latitud == null ? string.Empty : direccion.Latitud,
                 Longitud = direccion.Latitud == null ? null : direccion.Latitud,
                 Tipopeligro = direccion.IdpeligroNavigation == null ? null : direccion.IdpeligroNavigation.Tipopeligro,
                 Descripcion = direccion.IdpeligroNavigation == null ? null : direccion.IdpeligroNavigation.Descripcion

@@ -8,7 +8,8 @@ namespace SeguridadCiudadana.Domain.Dtos
     {
         public int Idusuario { get; set; }
         public string? NombreCompleto { get; set; }
-        public int? Edad { get; set; }
+        public DateTime? FechNac { get; set; }
+        public string? genero { get; set; }
         public string? Direccion { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }

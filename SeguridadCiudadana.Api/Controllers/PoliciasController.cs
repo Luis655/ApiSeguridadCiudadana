@@ -30,7 +30,7 @@ public class PoliciasController : ControllerBase
     {
         var _context = new RepoSql();
         var respuesta = await _context.GetAll();
-        var respuesta2 = respuesta.Select(x => CreateDTOFromObjects(x));
+        var respuesta2 = respuesta.Select(x => CreateDTOFromObjects2(x));
         return Ok(respuesta2);
     }
 
@@ -98,16 +98,14 @@ public class PoliciasController : ControllerBase
          var dtos = new PoliciaResponse{
          Idpolicias=policia.Idpolicias,
          NombreCompleto = policia.IdpersonaNavigation == null ? string.Empty : $"{policia.IdpersonaNavigation.Nombre} {policia.IdpersonaNavigation.Apellidos}",
-         Edad = policia.IdpersonaNavigation == null ? null : policia.IdpersonaNavigation.Edad,
+         FechNac = policia.IdpersonaNavigation == null ? Convert.ToDateTime("00-00-0000") : policia.IdpersonaNavigation.FechNac,
          Numeroplaca = policia.Numeroplaca,
          Tipoderango = policia.IdrangoNavigation == null ? string.Empty : policia.IdrangoNavigation.Tipoderango,
          Nombreestacion = policia.IdestacionNavigation == null ? string.Empty : policia.IdestacionNavigation.Nombreestacion,
          Direccion = policia.IdestacionNavigation == null ? string.Empty : $"{policia.IdestacionNavigation.IddireccionNavigation.Estado} {policia.IdestacionNavigation.IddireccionNavigation.Municipio} {policia.IdestacionNavigation.IddireccionNavigation.Colonia} {policia.IdestacionNavigation.IddireccionNavigation.Calle} {policia.IdestacionNavigation.IddireccionNavigation.Cruzamientos}",
-
          Nombre = policia.IdpersonaNavigation == null ? string.Empty : policia.IdpersonaNavigation.Nombre,
          Apellidos = policia.IdpersonaNavigation == null ? string.Empty : policia.IdpersonaNavigation.Apellidos,
          Idrango =policia.IdrangoNavigation== null ? null : policia.IdrangoNavigation.Idrango,
-     
          Idestacion = policia.IdestacionNavigation == null ? null : policia.IdestacionNavigation.Idestacion,
          Correo = policia.IdtipousuarioNavigation == null ? string.Empty : policia.IdtipousuarioNavigation.Correo,
          Contraseña = policia.IdtipousuarioNavigation == null ? string.Empty : policia.IdtipousuarioNavigation.Contraseña
@@ -124,12 +122,13 @@ public class PoliciasController : ControllerBase
          var dtos = new PoliciaResponse{ 
          Idpolicias=policia.Idpolicias,
          NombreCompleto = policia.IdpersonaNavigation == null ? string.Empty : $"{policia.IdpersonaNavigation.Nombre} {policia.IdpersonaNavigation.Apellidos}",
-         Edad = policia.IdpersonaNavigation == null ? null : policia.IdpersonaNavigation.Edad,
+         FechNac = policia.IdpersonaNavigation == null ? Convert.ToDateTime("00-00-0000") : policia.IdpersonaNavigation.FechNac,
          Numeroplaca = policia.Numeroplaca,
          Tipoderango = policia.IdrangoNavigation == null ? string.Empty : policia.IdrangoNavigation.Tipoderango,
          Nombreestacion = policia.IdestacionNavigation == null ? string.Empty : policia.IdestacionNavigation.Nombreestacion,
+         
          Direccion = policia.IdestacionNavigation == null ? string.Empty : $"{policia.IdestacionNavigation.IddireccionNavigation.Estado} {policia.IdestacionNavigation.IddireccionNavigation.Municipio} {policia.IdestacionNavigation.IddireccionNavigation.Colonia} {policia.IdestacionNavigation.IddireccionNavigation.Calle} {policia.IdestacionNavigation.IddireccionNavigation.Cruzamientos}",
-    
+         genero = policia.IdgeneroNavigation == null ? string.Empty : policia.IdgeneroNavigation.Tipigenero,
          Nombre = policia.IdpersonaNavigation == null ? string.Empty : policia.IdpersonaNavigation.Nombre,
          Apellidos = policia.IdpersonaNavigation == null ? string.Empty : policia.IdpersonaNavigation.Apellidos,
          Idrango =policia.IdrangoNavigation== null ? null : policia.IdrangoNavigation.Idrango,
@@ -154,16 +153,17 @@ public class PoliciasController : ControllerBase
                 IdpersonaNavigation = new Persona{
                     Nombre = dto.Nombre,
                     Apellidos = dto.Apellidos,
-                    Edad = dto.Edad},
+                    FechNac = dto.FechNac},
                 Numeroplaca = dto.Numeroplaca,
                 Idrango = dto.Idrango,
                 Idestacion = dto.Idestacion,
                 IdtipousuarioNavigation = new Tipousuario{
-                    //Idcargo = dto.Idcargo,
+                    Idcargo = 1,
                     Correo = dto.Correo,
                     Contraseña = dto.Contraseña},
-                //Idgenero = dto.idgenero
+                Idgenero = dto.Idgenero
             };
+            
 
             return policia;
         }

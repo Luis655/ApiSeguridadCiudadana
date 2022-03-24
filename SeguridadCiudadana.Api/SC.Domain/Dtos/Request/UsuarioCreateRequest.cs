@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +10,8 @@ namespace SeguridadCiudadana.Domain.Dtos
         public int Idusuario { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
-        public int? Edad { get; set; }
+        public DateTime FechNac { get; set; }
+        public int? Idgenero { get; set; }
         public string Correo { get; set; }
         public string Contraseña { get; set; }
         public string Estado { get; set; }

@@ -180,7 +180,7 @@ namespace SeguridadCiudadana.Infrastructure.Context
                     .IsUnicode(false)
                     .HasColumnName("APELLIDOS");
 
-                entity.Property(e => e.Edad).HasColumnName("EDAD");
+                entity.Property(e => e.FechNac).HasColumnName("FECHNAC");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)

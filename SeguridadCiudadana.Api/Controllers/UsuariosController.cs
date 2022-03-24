@@ -46,7 +46,7 @@ namespace SeguridadCiudadana.Api.Controllers
             var usuario = await _context.GetByIdUsuarios2(id);
 
 
-            var respuesta2 = CreateDTOFromObjects2(usuario);
+            var respuesta2 = CreateDTOFromObjects(usuario);
 
             return Ok(respuesta2);
         }
@@ -103,8 +103,19 @@ namespace SeguridadCiudadana.Api.Controllers
                 Idusuario = usuario.Idusuario,
 
                 NombreCompleto = usuario.IdpersonaNavigation == null ? string.Empty : $"{usuario.IdpersonaNavigation.Nombre} {usuario.IdpersonaNavigation.Apellidos}",
-                Edad = usuario.IdpersonaNavigation == null ? null : usuario.IdpersonaNavigation.Edad,
-                Direccion = usuario.IddireccionNavigation == null ? string.Empty : $"{usuario.IddireccionNavigation.Estado} {usuario.IddireccionNavigation.Municipio} {usuario.IddireccionNavigation.Colonia} {usuario.IddireccionNavigation.Calle} {usuario.IddireccionNavigation.Cruzamientos}"
+                FechNac = usuario.IdpersonaNavigation == null ? null : usuario.IdpersonaNavigation.FechNac,
+                Direccion = usuario.IddireccionNavigation == null ? string.Empty : $"{usuario.IddireccionNavigation.Estado} {usuario.IddireccionNavigation.Municipio} {usuario.IddireccionNavigation.Colonia} {usuario.IddireccionNavigation.Calle} {usuario.IddireccionNavigation.Cruzamientos}",
+                Nombre = usuario.IdpersonaNavigation == null ? string.Empty : usuario.IdpersonaNavigation.Nombre,
+                Apellidos = usuario.IdpersonaNavigation == null ? string.Empty : usuario.IdpersonaNavigation.Apellidos,
+                Correo = usuario.IdtipousuarioNavigation == null ? string.Empty : usuario.IdtipousuarioNavigation.Correo,
+                Contraseña = usuario.IdtipousuarioNavigation == null ? string.Empty : usuario.IdtipousuarioNavigation.Contraseña,
+                genero = usuario.IdgeneroNavigation == null ? string.Empty : usuario.IdgeneroNavigation.Tipigenero,
+                Estado = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Estado,
+                Municipio = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Municipio,
+                Colonia = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Colonia,
+                Calle = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Calle,
+                Cruzamientos = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Cruzamientos,
+
             };
             return dtos;
         }
@@ -116,12 +127,13 @@ namespace SeguridadCiudadana.Api.Controllers
                 Idusuario = usuario.Idusuario,
 
                 NombreCompleto = usuario.IdpersonaNavigation == null ? string.Empty : $"{usuario.IdpersonaNavigation.Nombre} {usuario.IdpersonaNavigation.Apellidos}",
-                Edad = usuario.IdpersonaNavigation == null ? null : usuario.IdpersonaNavigation.Edad,
+                FechNac = usuario.IdpersonaNavigation == null ? null : usuario.IdpersonaNavigation.FechNac,
                 Direccion = usuario.IddireccionNavigation == null ? string.Empty : $"{usuario.IddireccionNavigation.Estado} {usuario.IddireccionNavigation.Municipio} {usuario.IddireccionNavigation.Colonia} {usuario.IddireccionNavigation.Calle} {usuario.IddireccionNavigation.Cruzamientos}",
                 Nombre = usuario.IdpersonaNavigation == null ? string.Empty : usuario.IdpersonaNavigation.Nombre,
                 Apellidos = usuario.IdpersonaNavigation == null ? string.Empty : usuario.IdpersonaNavigation.Apellidos,
                 Correo = usuario.IdtipousuarioNavigation == null ? string.Empty : usuario.IdtipousuarioNavigation.Correo,
                 Contraseña = usuario.IdtipousuarioNavigation == null ? string.Empty : usuario.IdtipousuarioNavigation.Contraseña,
+                genero = usuario.IdgeneroNavigation == null ? string.Empty : usuario.IdgeneroNavigation.Tipigenero,
                 Estado = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Estado,
                 Municipio = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Municipio,
                 Colonia = usuario.IddireccionNavigation == null ? string.Empty : usuario.IddireccionNavigation.Colonia,
@@ -147,11 +159,12 @@ namespace SeguridadCiudadana.Api.Controllers
                 {
                     Nombre = dto.Nombre,
                     Apellidos = dto.Apellidos,
-                    Edad = dto.Edad
+                    FechNac = dto.FechNac
                 },
                 IdtipousuarioNavigation = new Tipousuario{
                     Correo = dto.Correo,
-                    Contraseña = dto.Contraseña
+                    Contraseña = dto.Contraseña,
+                    Idcargo = 2
                 },
                 IddireccionNavigation = new Direccione{
                     Estado = dto.Estado,
@@ -159,7 +172,9 @@ namespace SeguridadCiudadana.Api.Controllers
                     Colonia = dto.Colonia,
                     Calle = dto.Calle,
                     Cruzamientos = dto.Cruzamientos
-                }
+                },
+                Idgenero = dto.Idgenero,
+                
 
                
                /* {
