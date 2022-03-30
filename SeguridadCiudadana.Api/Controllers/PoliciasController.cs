@@ -9,7 +9,7 @@ using SeguridadCiudadana.Domain.Dtos;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
 
 
 namespace SeguridadCiudadana.Api.Controllers {
@@ -32,6 +32,37 @@ public class PoliciasController : ControllerBase
         var respuesta = await _context.GetAll();
         var respuesta2 = respuesta.Select(x => CreateDTOFromObjects2(x));
         return Ok(respuesta2);
+    }
+
+
+     [HttpGet]
+    [Route("GetAllCargos")]
+    public async Task<IActionResult> GetAllcargos()
+    {
+        var _context = new RepoSql();
+        var respuesta = await _context.GetAllcargos();
+       
+        return Ok(respuesta);
+    }
+
+
+    [HttpPost]
+    [Route("GetUser")]
+    public async Task<IActionResult> GetUser([FromBody]Tipousuario tipousuario)
+    {
+        var _context = new RepoSql();
+        
+        var respuesta = await _context.GetUser(tipousuario);
+
+        if (respuesta == null)
+        {
+            return StatusCode(500);
+        }
+        else
+        {
+             return Ok(respuesta);
+        }
+       
     }
 
 
@@ -158,7 +189,7 @@ public class PoliciasController : ControllerBase
                 Idrango = dto.Idrango,
                 Idestacion = dto.Idestacion,
                 IdtipousuarioNavigation = new Tipousuario{
-                    Idcargo = 1,
+                    Idcargo = 2,
                     Correo = dto.Correo,
                     Contraseña = dto.Contraseña},
                 Idgenero = dto.Idgenero

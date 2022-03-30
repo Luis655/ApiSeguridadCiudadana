@@ -37,6 +37,18 @@ namespace SeguridadCiudadana.Api.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("GetAll2")]
+        public async Task<IActionResult> GetAll2()
+        {
+            var _context = new RepoSql();
+            var respuesta = await _context.GetAllRutas();
+            var respuesta2 = respuesta.Select(x => CreateDTOFromObjects(x));
+            return Ok(respuesta2);
+
+        }
+
         [HttpGet]
         [Route("GetById/{id:int}")]
         public async Task<IActionResult> GetById(int id)
@@ -102,8 +114,10 @@ namespace SeguridadCiudadana.Api.Controllers
             {
                 Iddireccionsegura = direccion.Iddireccionsegura,
                 Latitud = direccion.Latitud == null ? string.Empty : direccion.Latitud,
-                Longitud = direccion.Latitud == null ? null : direccion.Latitud,
+                Longitud = direccion.Longitud == null ? null : direccion.Longitud,
                 Tipopeligro = direccion.IdpeligroNavigation == null ? null : direccion.IdpeligroNavigation.Tipopeligro,
+                Verificacion = direccion.Verificacion == null ? false : direccion.Verificacion,
+                Calificacion = direccion.Calificacion == null ? 0 : direccion.Calificacion,
                 Descripcion = direccion.IdpeligroNavigation == null ? null : direccion.IdpeligroNavigation.Descripcion
                 
             };
@@ -131,7 +145,9 @@ namespace SeguridadCiudadana.Api.Controllers
                 Iddireccionsegura = dto.Iddireccionsegura,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Idpeligro = dto.Idpeligro 
+                Idpeligro = dto.Idpeligro,
+                Verificacion = dto.Verificacion,
+                Calificacion = dto.Calificacion
 
             };
             

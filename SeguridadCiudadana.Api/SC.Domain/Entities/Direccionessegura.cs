@@ -9,6 +9,8 @@ namespace SeguridadCiudadana.Domain.Entities
         public string? Latitud { get; set; }
         public string? Longitud { get; set; }
         public int Idpeligro { get; set; }
+        public bool? Verificacion { get; set; }
+        public int? Calificacion { get; set; }
 
         public virtual Categoriapeligro IdpeligroNavigation { get; set; }
     }

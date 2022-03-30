@@ -7,6 +7,21 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using SeguridadCiudadana.Domain.Dtos;
+
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
+
 
 namespace SC.Infrastructure.Repositories
 {
@@ -18,6 +33,24 @@ namespace SC.Infrastructure.Repositories
             var query = await  _context.Policias.Include(x => x.IdpersonaNavigation).Include(x=>x.IdrangoNavigation).Include(x=>x.IdestacionNavigation).Include(x=> x.IdestacionNavigation.IddireccionNavigation).Include(x => x.IdtipousuarioNavigation).Include(x => x.IdgeneroNavigation).ToListAsync();
             return query.AsQueryable();
         }
+
+
+           public async Task<IQueryable<Cargo>> GetAllcargos()
+        {
+            var _context = new SEGURIDADCIUDADANAContext();
+            var query = await  _context.Cargos.Select(Cargo => Cargo).ToListAsync();
+            return query.AsQueryable();
+        }
+
+
+
+         public async Task<Tipousuario> GetUser(Tipousuario tipousuario)
+        {
+            var _context = new SEGURIDADCIUDADANAContext();
+            var Cuenta = _context.Tipousuarios.Where(p => p.Correo == tipousuario.Correo && p.Contraseña == tipousuario.Contraseña).FirstOrDefault<Tipousuario>();
+            return Cuenta;
+        }
+
 
          public async Task<IQueryable<Estacion>> GetAllEstacion()
         {

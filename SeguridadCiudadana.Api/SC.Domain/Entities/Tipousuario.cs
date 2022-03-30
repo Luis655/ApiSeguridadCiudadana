@@ -11,13 +11,13 @@ namespace SeguridadCiudadana.Domain.Entities
             Usuarios = new HashSet<Usuario>();
         }
 
-        public int Idtipousuario { get; set; }
-        public int? Idcargo { get; set; }
-        public string Correo { get; set; }
-        public string Contraseña { get; set; }
+        public int? Idtipousuario { get; set; }
+        public int Idcargo { get; set; }
+        public string? Correo { get; set; }
+        public string? Contraseña { get; set; }
 
-        public virtual Cargo IdcargoNavigation { get; set; }
-        public virtual ICollection<Policia> Policia { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual Cargo? IdcargoNavigation { get; set; }
+        public virtual ICollection<Policia>? Policia { get; set; }
+        public virtual ICollection<Usuario>? Usuarios { get; set; }
     }
 }

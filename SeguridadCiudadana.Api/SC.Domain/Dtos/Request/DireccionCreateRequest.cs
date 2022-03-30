@@ -10,6 +10,9 @@ namespace SeguridadCiudadana.Domain.Dtos
         public string? Latitud { get; set; }
         public string? Longitud { get; set; }
         public int Idpeligro { get; set; }
+        public bool? Verificacion { get; set; }
+        public int Calificacion { get; set; }
+
         
 
     }

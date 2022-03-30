@@ -37,6 +37,18 @@ namespace SeguridadCiudadana.Api.Controllers
 
         }
 
+         [HttpGet]
+        [Route("GetAll/{email}")]
+
+        public async Task<IActionResult> GetByEmail()
+        {
+            var _context = new RepoSql();
+            var respuesta = await _context.GetAllUsuarios();
+            var respuesta2 = respuesta.Select(x => CreateDTOFromObjects(x));
+            return Ok(respuesta2);
+
+        }
+
         [HttpGet]
         [Route("GetById/{id:int}")]
         public async Task<IActionResult> GetById(int id)
@@ -164,7 +176,7 @@ namespace SeguridadCiudadana.Api.Controllers
                 IdtipousuarioNavigation = new Tipousuario{
                     Correo = dto.Correo,
                     Contraseña = dto.Contraseña,
-                    Idcargo = 2
+                    Idcargo = 1
                 },
                 IddireccionNavigation = new Direccione{
                     Estado = dto.Estado,

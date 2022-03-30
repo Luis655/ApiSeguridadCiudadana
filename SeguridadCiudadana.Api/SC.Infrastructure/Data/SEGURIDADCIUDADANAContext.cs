@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SeguridadCiudadana.Domain.Entities;
 
 namespace SeguridadCiudadana.Infrastructure.Context
 {
-    public partial class SEGURIDADCIUDADANAContext : DbContext
+    public class SEGURIDADCIUDADANAContext : IdentityDbContext
     {
         public SEGURIDADCIUDADANAContext()
         {
@@ -120,6 +121,10 @@ namespace SeguridadCiudadana.Infrastructure.Context
 
                 entity.Property(e => e.Idpeligro).HasColumnName("IDPELIGRO");
 
+                entity.Property(e => e.Longitud).HasColumnName("VERIFICACION");
+                
+                entity.Property(e => e.Longitud).HasColumnName("CALIFICACION");
+
                 entity.Property(e => e.Latitud).HasColumnName("LATITUD");
 
                 entity.Property(e => e.Longitud).HasColumnName("LONGITUD");
@@ -128,6 +133,8 @@ namespace SeguridadCiudadana.Infrastructure.Context
                     .WithMany(p => p.Direccionesseguras)
                     .HasForeignKey(d => d.Idpeligro)
                     .HasConstraintName("FK_IDPELIGRO");
+
+                
             });
 
             modelBuilder.Entity<Estacion>(entity =>
@@ -322,9 +329,9 @@ namespace SeguridadCiudadana.Infrastructure.Context
                     .HasConstraintName("FK_IDTIPOUSUARIO");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        //partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
