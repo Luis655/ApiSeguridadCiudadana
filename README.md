@@ -17,7 +17,7 @@ Esta API, desarrollada con .NET, proporciona endpoints para gestionar informaci�
 
 ## Documentación de API
 
-Para obtener detalles sobre cómo utilizar cada endpoint y los parámetros requeridos, consulte la documentación de la API proporcionada en la ruta `/docs` una vez que la API esté en funcionamiento.
+Proximamente------
 
 ## Instalación y Uso
 
